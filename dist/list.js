@@ -131,6 +131,12 @@ var naturalSort = __webpack_require__(813),
   classes = __webpack_require__(536),
   getAttribute = __webpack_require__(665),
   toArray = __webpack_require__(659);
+/**
+ * Initializes a list object with various functionalities such as filtering, searching, sorting, and pagination.
+ * @param {string|Element} id - The id or element of the list container.
+ * @param {Object} options - The options to customize the list behavior.
+ * @param {Array} values - The initial values to populate the list with.
+ */
 module.exports = function (id, options, values) {
   var self = this,
     init,
