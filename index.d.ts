@@ -1,15 +1,3 @@
-type TEvents =
-  | 'filterStart'
-  | 'filterComplete'
-  | 'updated'
-  | 'parseComplete'
-  | 'searchStart'
-  | 'searchComplete'
-  | 'sortStart'
-  | 'sortComplete'
-  | 'paginationStart'
-  | 'paginationEnd';
-
 declare module 'list.js' {
   class List<T> {
     listContainer: HTMLElement
@@ -58,7 +46,7 @@ declare module 'list.js' {
 
     fuzzySearch(searchString: string, columns?: string[]): void
 
-    on(event: TEvents, callback: () => void): void
+    on(event: List.Events, callback: () => void): void
   }
 
   namespace List {
@@ -101,6 +89,17 @@ declare module 'list.js' {
     }
 
     type ValueNames = Array<string | { name: string; attr: string } | { data: string[] }>
+    type Events =
+      | 'filterStart'
+      | 'filterComplete'
+      | 'updated'
+      | 'parseComplete'
+      | 'searchStart'
+      | 'searchComplete'
+      | 'sortStart'
+      | 'sortComplete'
+      | 'paginationStart'
+      | 'paginationEnd'
   }
 
   export default List

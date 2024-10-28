@@ -7,7 +7,12 @@ var naturalSort = require('string-natural-compare'),
   classes = require('./utils/classes'),
   getAttribute = require('./utils/get-attribute'),
   toArray = require('./utils/to-array')
-
+/**
+ * Initializes a list object with various functionalities such as filtering, searching, sorting, and pagination.
+ * @param {string|Element} id - The id or element of the list container.
+ * @param {Object} options - The options to customize the list behavior.
+ * @param {Array} values - The initial values to populate the list with.
+ */
 module.exports = function (id, options, values) {
   var self = this,
     init,
@@ -179,7 +184,7 @@ module.exports = function (id, options, values) {
   /* Gets the objects in the list which
    * property "valueName" === value
    */
-  this.get = function (valueName, value) {
+  this.get = (valueName, value) => {
     var matchedItems = []
     for (var i = 0, il = self.items.length; i < il; i++) {
       var item = self.items[i]
