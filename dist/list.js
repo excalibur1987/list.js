@@ -214,14 +214,12 @@ module.exports = function (id, options, values) {
     pagination: function pagination() {
       if (options.pagination !== undefined) {
         if (options.pagination === true) {
-          options.pagination = [{}];
+          options.pagination = {}; // default pagination options
         }
-        if (options.pagination[0] === undefined) {
-          options.pagination = [options.pagination];
+        if (options.pagination[0] !== undefined) {
+          throw new Error('Invalid pagination options format, see documentation');
         }
-        for (var i = 0, il = options.pagination.length; i < il; i++) {
-          initPagination(options.pagination[i]);
-        }
+        initPagination(options.pagination);
       }
     }
   };
