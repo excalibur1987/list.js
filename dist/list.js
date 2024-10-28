@@ -152,7 +152,16 @@ module.exports = function (id, options, values) {
       self.searchColumns = undefined;
       self.searchDelay = 0;
       self.handlers = {
-        updated: []
+        filterStart: [],
+        filterComplete: [],
+        updated: [],
+        parseComplete: [],
+        searchStart: [],
+        searchComplete: [],
+        sortStart: [],
+        sortComplete: [],
+        paginationStart: [],
+        paginationEnd: []
       };
       self.valueNames = [];
       self.utils = {
@@ -436,6 +445,7 @@ var classes = __webpack_require__(536),
 module.exports = function (list) {
   var isHidden = false;
   var refresh = function refresh(pagingList, options) {
+    list.trigger('paginationStart');
     if (list.page < 1) {
       list.listContainer.style.display = 'none';
       isHidden = true;
@@ -477,6 +487,7 @@ module.exports = function (list) {
         classes(item.elm).add('disabled');
       }
     }
+    list.trigger('paginationEnd');
   };
   var is = {
     number: function number(i, left, right, currentPage, innerWindow) {
