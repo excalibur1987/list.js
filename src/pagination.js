@@ -6,6 +6,7 @@ module.exports = function (list) {
   var isHidden = false
 
   var refresh = function (pagingList, options) {
+    list.trigger('paginationStart')
     if (list.page < 1) {
       list.listContainer.style.display = 'none'
       isHidden = true
@@ -49,6 +50,7 @@ module.exports = function (list) {
         classes(item.elm).add('disabled')
       }
     }
+    list.trigger('paginationEnd')
   }
 
   var is = {
