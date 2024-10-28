@@ -18,6 +18,8 @@ declare module 'list.js' {
 
     i: number
 
+    page: number
+
     valueNames: List.ValueNames
 
     constructor(element: string | HTMLElement, options?: List.ListOptions<T>, values?: T[])
@@ -50,7 +52,7 @@ declare module 'list.js' {
   }
 
   namespace List {
-    interface ListItem<T> {
+    interface ListItem<T = {}> {
       elm: HTMLElement
 
       values(newValues: object): void
@@ -61,7 +63,7 @@ declare module 'list.js' {
       visible(): boolean
     }
 
-    interface ListOptions<T> {
+    interface ListOptions<T = {}> {
       valueNames?: ValueNames
       item?: string | ((itemValues: T) => string)
       listClass?: string
