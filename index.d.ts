@@ -14,13 +14,22 @@ declare module 'list.js' {
 
     filtered: boolean
 
-    alphabet: string
-
     i: number
 
     page: number
 
     valueNames: List.ValueNames
+
+    listClass: string
+    searchClass: string
+    sortClass: string
+
+    searchColumns: string[] | undefined
+    searchDelay: number
+
+    handlers: { [key: List.Events]: () => void }
+
+    templater: List.Templater<T> | undefined
 
     constructor(element: string | HTMLElement, options?: List.ListOptions<T>, values?: T[])
 
@@ -49,6 +58,18 @@ declare module 'list.js' {
     fuzzySearch(searchString: string, columns?: string[]): void
 
     on(event: List.Events, callback: () => void): void
+
+    off(event: List.Events, callback: () => void): void
+
+    toJson(): T[]
+
+    size(): number
+
+    pagination(): void
+
+    trigger(event: List.Events): List<T>
+    reset(): List<T>
+    parse(): void
   }
 
   namespace List {
@@ -102,6 +123,19 @@ declare module 'list.js' {
       | 'sortComplete'
       | 'paginationStart'
       | 'paginationEnd'
+
+    class Templater<T> {
+      list: List<T>
+      constructor(list: List)
+
+      get<TK extends keyof T>(item: List.ListItem<T>, valueNames: TK[]): Pick<T, K>
+      set(item: List.ListItem<T>, values: T): void
+      create(item: List.ListItem<T>): boolean
+      remove(item: List.ListItem<T>): void
+      show(item: List.ListItem<T>): void
+      hide(item: List.ListItem<T>): void
+      clear(): void
+    }
   }
 
   export default List
