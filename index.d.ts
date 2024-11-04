@@ -61,7 +61,7 @@ declare module 'list.js' {
 
     off(event: List.Events, callback: () => void): void
 
-    toJson(): T[]
+    toJSON(): T[]
 
     size(): number
 
